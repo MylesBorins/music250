@@ -1,0 +1,11 @@
+{
+  "name": "music250",
+  "version": "0.0.0",
+  "dependencies": {
+    "sass-bootstrap": "~3.0.0",
+    "modernizr": "~2.6.2",
+    "jquery": "~1.10.2",
+    "sticky-kit": "~1.0.1"
+  },
+  "devDependencies": {}
+}
