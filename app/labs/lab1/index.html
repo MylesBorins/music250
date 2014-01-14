@@ -1,0 +1,203 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>music250a</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="../../styles/main.css">
+        <!-- endbuild -->
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="../../bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+    </head>
+    <body>
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+        <div class="container">
+            <div class="header">
+                <ul class="nav nav-pills">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../../schedule">Schedule</a></li>
+                    <li><a href="../../lectures">Lectures</a></li>
+                    <li class="dropdown active">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Assignments <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a href="../../homework">Homework</a></li>
+                        <li class="active"><a href="../../labs">Labs</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="../../final">Final Projects</a></li>
+                    <li><a href="../../resources">Resources</a></li>
+                    <li><a href="../../history">History</a></li>
+                </ul>
+            </div>
+
+            <td class="norm2">
+                  <h3>Due Wednesday October 1</h3>
+                  <h2>1. Download the lab 1 Pd patches</h2>    
+                  <p>
+                      Save<a href="lab1.tar.gz"> lab1.tar.gz</a> into your 250a directory.
+                  </p>
+                  <p>
+                      Uncompress the archive
+                  </p>
+                  <pre>~&gt; cd 250a
+~/250a&gt; tar xzf lab1.tar.gz</pre>
+                  <h2>2. Play around with the Pd patches</h2>
+                  <p>
+                  If you weren't at the console during Wednesday's class, download the .pdsettings file &amp; the instructions in 2) from the <a href="../../lectures/pd/">PD lecture</a>
+                  </p>
+                  <p>
+                      Open lab1.pd. Play around with this patch. You should be able to exhaust its musical potential in a matter of minutes; reflect on its strengths and limitations.
+                  </p>
+                  <pre>~/250a&gt; cd lab1
+~/250a/lab1&gt; pd lab1.pd</pre>
+                  <p>
+                      Also try to understand how it works
+            as a piece of software. (But please don't get hung up on the Pd arcana. As always, if you get stuck, ask for help rather than wastetime.)
+                  </p>
+                  <h3>Pd Documentation</h3>
+                  <p>
+                      Right-click on any object to get a contextual menu including "Help," which opens that object's help patch.
+                  </p>
+                  <p>
+                      Right-click on a blank portion of a Pd patch. Now when you select "Help" you get a list of Pd's built-in objects, arranged by category.
+                  </p>
+                  <p>
+                      In the upper right hand corner of each Pd window is a "Help" menu. This accesses the Pd tutorials as well as some online reference documentation.
+                  </p>
+
+                  <h2>3. An exercise</h2>
+                  <p>
+                    What happens when you hold down a key?  Does this happen with an oud when you hold your finger against a string?
+                  </p>
+                  <p>
+                      Find a way to filter the keyboard input to remove repeats.  That is, each time you press a sample key, Pd should play the sample exactly once. You will probably need to use Pd's message box, "delay", "sel", "spigot", and "loadbang" objects, but there are always many solutions to a given problem. We also found the "print" object useful for debugging.
+                  </p>
+                  <h2>4. Design a different musical interaction</h2>
+                  <p>
+                      Here are some ideas of changes that might make the patch more interesting:
+                  </p>
+                  <ul>
+                    <li>Involve more QWERTY keys </li>
+                    <li>Involve the mouse</li>
+                    <li>Load in a larger collection of samples.
+                      <ul>
+                        <li>Implement a mechanism to switch among banks of samples</li>
+                      </ul>
+                    </li>
+                    <li>Multiple gestures to one result: design a way for the parameters of each triggered note to depend on multiple keypresses. For example, maybe only the space bar triggers notes, and all the other keys determine parameters of notes.
+                      <ul>
+                        <li>Set multiple parameters modally, as volume works in the sample patch</li>
+                        <li>Use "chording": keep track of all the keys that are currently pressed, and use only that information to set the parameters for each note.</li>
+                      </ul>
+                    </li>
+                    <li>One gesture to multiple results
+                      <ul>
+                        <li>Use Pd's "metro" object to trigger a steady stream of notes. Now you have two new parameters: repetition rate, and whether the metro is on or off.</li>
+                        <li>Use Pd's "counter" object to step through a cycle (of samples, parameter settings, etc.) </li>
+                        <li>You could combine "metro" and "counter" to build a rudimentary sequencer that can step through a rhythmic pattern</li>
+                        <li>Invent a mechanism to record short sequences of keypresses and play them back in time.</li>
+                      </ul>
+                    </li>
+                    <li>Incorporate looping or other interactive controls over the soundfile playback</li>
+                    <li>Use Pd's "spigot" object to route control information to different parts of your patch at different times</li>
+                    <li>Use some additional signal processing such as a filter, delay line, reverb, tremolo, etc. This gives you more parameters to control.</li>
+                    <li>Polyphony: make it so the patch can play multiple samples at the same time. (Hint: put multiple copies of "play-sample" in your patch...)</li>
+                    <li>Use a totally different form of sound synthesis, such as FM, granular, or physical modeling. </li>
+                    <li>Here are a list of physical models that should be available in Pd (for more info see <a href="http://cm-wiki.stanford.edu/wiki/Stk2pd">this page</a>)</li>
+                    <li>A collection of STK Physical and FM synthesis objects are now available in Pd. Check out the following objects:
+                        <ul>
+                            <li>BandedWG~</li>
+                            <li>BeeThree~</li>
+                            <li>BlowBottle~</li>
+                            <li>BlowHole~</li>
+                            <li>Bowed~</li>
+                            <li>Brass~</li>
+                            <li>Clarinet~</li>
+                            <li>Flute~</li>
+                            <li>FMVoices~</li>
+                            <li>HevyMetl~</li>
+                            <li>Mandolin~</li>
+                            <li>ModalBar~</li>
+                            <li>Moog~</li>
+                            <li>PercFlut~</li>
+                            <li>Plucked~</li>
+                            <li>Resonate~</li>
+                            <li>Rhodey~</li>
+                            <li>Saxofony~</li>
+                            <li>Shakers~</li>
+                            <li>Simple~</li>
+                            <li>Sitar~</li>
+                            <li>StifKarp~</li>
+                            <li>TubeBell~</li>
+                            <li>VoicForm~</li>
+                            <li>Whistle~</li>
+                            <li>Wurley</li>
+                        </ul>
+
+                  </ul>
+                  <p>
+                      We recommend that you pick one or a small number of these and work on it in depth, iterating on both the program/test/debug cycle as well as the design/implement/play cycle to craft something that has actual musical potential or is at least more fun to play. If you have an existing idea for your class project, you could use this lab to start thinking about implementing some of the modes and mappings. By all means, if you're inspired to try something else, go for it. If you'd rather spend today getting more of a broad sense of Pd's capabilities, feel free to work on many of these suggestions.
+                  </p>
+                  <h2>5. The Pd Community </h2>
+                  <p>
+                      Although Pd is clunky and has lots of usability issues, there is a large, dedicated, and very generous community of Pd users on the Internet. Do some web searching (e.g., with a search engine, or else starting from some Pd-specific resources - see the '<a href="../../resources/">resources</a>' page for some places to start) and look for interesting Pd externals and/or patches. Download, install, and play with at least one. Can you incorporate it into what you programmed in part 4? 
+                  </p>
+
+            <div class="footer">
+                <p>made with ♥ at <a href="http://ccrma.stanford.edu">ccrma</a></p>
+            </div>
+
+        </div>
+
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="../../bower_components/jquery/jquery.js"></script>
+        <script src="../../bower_components/sticky-kit/jquery.sticky-kit.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+
+        <!-- build:js scripts/main.js -->
+        <script src="../../scripts/main.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js scripts/plugins.js -->
+        <script src="../../bower_components/sass-bootstrap/js/affix.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/alert.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/dropdown.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/tooltip.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/modal.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/transition.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/button.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/popover.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/carousel.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/scrollspy.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/collapse.js"></script>
+        <script src="../../bower_components/sass-bootstrap/js/tab.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
